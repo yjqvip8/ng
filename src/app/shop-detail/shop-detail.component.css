@@ -1,0 +1,7 @@
+.mar-left{
+    display:inline-block;
+    vertical-align:top;
+    margin: 0;
+    padding: 1rem 1.5rem;
+    border: 0.2rem solid yellowgreen;
+}
