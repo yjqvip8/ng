@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { ShopList } from "./shop-list/shopList";
 import { Observable, of } from "rxjs";
 import { MessageService } from "./message.service";
+import { catchError, map, tap } from "rxjs/operators";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 @Injectable({
   providedIn: "root"
@@ -14,49 +15,25 @@ export class SuperShopService {
   private log(message: string) {
     this.messageService.add(`HeroService: ${message}`);
   }
-  shopLists: ShopList[] = [
-    {
-      shopid: 2019051301,
-      title: "神州小本",
-      subTitle: "神州小本，一人一本",
-      price: 85.26,
-      id: 100001
-    },
-    {
-      shopid: 2019051302,
-      title: "华为P30 pro",
-      subTitle: "手机中的摄像机",
-      price: 8858.26,
-      id: 100002
-    },
-    {
-      shopid: 2019051303,
-      title: "小米MIX5 pro",
-      subTitle: "小米公司匠心研究8年，最新产品",
-      price: 85.26,
-      id: 100001
-    },
-    {
-      shopid: 2019051304,
-      title: "一加 8 Plus",
-      subTitle: "外国人都抢疯了",
-      price: 8352.2,
-      id: 100001
-    },
-    {
-      shopid: 2019051305,
-      title: "荣耀 X200",
-      subTitle: "我用华为，我倍感荣耀",
-      price: 2359.99,
-      id: 100001
-    }
-  ];
-  private heroesUrl = "http://localhost:8080/shops/list";
+  private getShopListUrl = "http://localhost:8080/shops/";
   getShopList(): Observable<ShopList[]> {
-    return this.http.get<ShopList[]>(this.heroesUrl);
+    return this.http.get<ShopList[]>(`${this.getShopListUrl}list`).pipe(
+      tap(_ => this.log("fetched heroes")),
+      catchError(this.handleError<ShopList[]>("getHeroes", []))
+    );
   }
   getShop(shopid: number): Observable<ShopList> {
-    this.messageService.add(`商品ID=${shopid}`);
-    return of(this.shopLists.find(shop => shop.shopid === shopid));
+    const url = `${this.getShopListUrl}shop?shopid=${shopid}`;
+    return this.http.get<ShopList>(url).pipe(
+      tap(_ => this.log(`fetched hero id=${shopid}`)),
+      catchError(this.handleError<ShopList>(`getHero id=${shopid}`))
+    );
+  }
+  private handleError<T>(operation = "operation", result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      this.log(`${operation} failed: ${error.message}`);
+      return of(result as T);
+    };
   }
 }

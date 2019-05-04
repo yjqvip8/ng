@@ -1,8 +1,9 @@
-
-<div class="mar-left">
-  详情： 
-  <p >shopid:{{shop.shopid}}</p>
-  <p>title:{{shop.title}}</p>
-  <p>subtitle:{{shop.subTitle}}</p>
+<div class="mar-left" *ngIf="shop.shopid">
+  详情：
+  <p>shopid:{{ shop.shopid }}</p>
+  <p>title:{{ shop.title }}</p>
+  <p>subtitle:{{ shop.subTitle }}</p>
 </div>
 <button (click)="goBack()">回退</button>
+
+

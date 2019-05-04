@@ -8,7 +8,7 @@ import { SuperShopService } from "../super-shop.service";
   selector: "app-shop-detail",
   templateUrl: "./shop-detail.component.html",
   styleUrls: ["./shop-detail.component.css"]
-})
+}) 
 export class ShopDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
@@ -17,16 +17,21 @@ export class ShopDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getShop()
+    this.getShop();
   }
-  shop:ShopList
+  shop: ShopList={
+    shopid:20190517,
+    price:2018,
+    title:"你好",
+    subTitle:"ni",
+    id:100001
+  };
   getShop(): void {
     const shopid = +this.route.snapshot.paramMap.get("shopid");
-    this.superShopService
-      .getShop(shopid)
-      .subscribe(item => (this.shop = item));
+    this.superShopService.getShop(shopid).subscribe(item => (this.shop = item));
   }
   goBack(): void {
     this.location.back();
   }
+ 
 }
