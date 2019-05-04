@@ -2,5 +2,11 @@
 <div style="background:#0593d3;">
   <h1>Welcome to {{ title }}</h1>
 </div>
-<app-shop-list></app-shop-list>
+<div>
+    <a routerLink="" class="show-a" (click)="handleClick('复位')" [class.active]="'复位'==state">复位</a>
+  <a routerLink="/shopList" class="show-a" (click)="handleClick('shopList')" [class.active]="'shopList'==state">shopList</a>
+  <a routerLink="/dashboard" class="show-a" (click)="handleClick('dashboard')" [class.active]="'dashboard'==state">dashboard</a>
+</div>
+<router-outlet></router-outlet>
 <app-messages></app-messages>
+

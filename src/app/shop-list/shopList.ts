@@ -1,5 +1,7 @@
 export class ShopList{
-    id:number;
-    name:string;
-    meta:boolean
+    shopid:number;
+    title:string;
+    subTitle:string;
+    price:number;
+    id:number
 }

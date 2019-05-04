@@ -1,0 +1,7 @@
+<div class="grid grid-pad">
+  <a *ngFor="let item of shopLists" routerLink="/detail/{{item.shopid}}" class="col-1-4">
+    <div class="module hero" >
+      <h4>{{item.title}}</h4>
+    </div>
+  </a>
+</div>

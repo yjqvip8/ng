@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ShopList } from "./shopList";
 import { SuperShopService } from "../super-shop.service";
-import { timingSafeEqual } from "crypto";
 @Component({
   selector: "app-shop-list",
   templateUrl: "./shop-list.component.html",
@@ -19,33 +18,17 @@ export class ShopListComponent implements OnInit {
       .getShopList()
       .subscribe(shopLists => (this.shopLists = shopLists));
   }
-  shopList: ShopList = {
-    id: 15,
-    name: "Liu-jq",
-    meta: true
-  };
-  editName = "";
-  subId = 0;
-  handelClick(item): void {
-    this.subId = item.id;
-    this.shopList = item;
-  }
-  editId = "";
-
-  toGet() {}
+  editName: string = "";
   addClick(): void {
     if (this.editName == "") {
       return;
     }
-    function showBoolean() {
-      return Math.random() > 0.5 ? false : true;
-    }
-    var show = showBoolean();
-
     this.shopLists.push({
-      id: this.shopLists.length + 1,
-      name: this.editName,
-      meta: show
+      shopid:this.shopLists.length+1,
+      title: this.editName+"title",
+      subTitle: "sub title string",
+      price: 85.2,
+      id: 100001
     });
     this.editName = "";
   }

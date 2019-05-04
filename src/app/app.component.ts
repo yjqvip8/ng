@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  
   title = '07 shopping Mall';
+  state:string;
+  handleClick(msg:string):void{
+     this.state = msg ;
+  }
+ 
 }

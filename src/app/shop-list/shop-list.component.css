@@ -5,14 +5,11 @@
 .bgbo{
     display: inline-block;
     border-radius: 1rem;
+    color: #000;
     border: 0.1rem solid lightcyan;
     margin-left: 0.7rem;
     padding: 0.5rem 0.8rem;
     background: lemonchiffon;
-    cursor: pointer;
+    text-decoration: none;
 }
-.change{
-    color:#000;
-    background: transparent;
-    border: 0.1rem solid red;
-}
+

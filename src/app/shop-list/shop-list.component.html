@@ -1,17 +1,10 @@
-<p>
-  shopList
-</p>
-<hr />
-<p>请修改名字：
+
+<p>请添加名字：
    <input type="text" [(ngModel)]="editName" placeholder="请输入内容">
    <button (click)="addClick()">添加</button>
 </p>
 <div>
   <div *ngFor="let item of shopLists " class="dis-inline" >
-    <p  (click)="handelClick(item)" class="bgbo" [class.change]="item.id===subId">{{item.name}}</p>
+    <a routerLink="/detail/{{item.shopid}}"   class="bgbo" >{{item.title}}</a>
   </div>
 </div>
- <app-shop-detail [shopList]="shopList"></app-shop-detail>
-<hr>
-请输入查询的ID: <input type="text" [(ngModel)]="editId">
-<button (click)="toGet()">点击发送请求</button>
